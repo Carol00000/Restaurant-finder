@@ -3,6 +3,8 @@ builder = "nixpacks"
 
 [deploy]
 startCommand = "bundle exec puma -C config/puma.rb"
-healthcheckPath = "/up"
-healthcheckTimeout = 100
 restartPolicyType = "on_failure"
+
+# Run migration when deploying
+[deploy.releaseCommand]
+command = "bundle exec rails db:migrate"
