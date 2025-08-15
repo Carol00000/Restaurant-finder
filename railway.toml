@@ -7,8 +7,5 @@ healthCheckPath = "/up"
 healthCheckTimeout = 300
 restartPolicyType = "always"
 
-[[deploy.environmentVariables]]
-RAILS_ENV = "production"
-
 [deploy.releaseCommand]
-command = "bundle exec rails db:create db:migrate"
+command = "bundle exec rails db:create db:migrate db:seed"
