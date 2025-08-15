@@ -2,7 +2,7 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "bundle exec puma -p $PORT"
+startCommand = "bundle exec rails server -b 0.0.0.0 -p $PORT"
 healthcheckPath = "/up"
 healthcheckTimeout = 300
 restartPolicyType = "always"
