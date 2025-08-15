@@ -13,6 +13,6 @@ test:
 
 production:
   <<: *default
-  database: storage/production.sqlite3
+  #database: storage/production.sqlite3
   # If you're using PostgreSQL on Railway, use this instead:
-  # url: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV['DATABASE_URL'] %>
