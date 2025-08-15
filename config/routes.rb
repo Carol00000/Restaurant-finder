@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: proc { [200, {}, ['OK']] }
+  root 'application#health'
   #root 'dashboard#profile'
 
   get 'restaurants/search', to: 'restaurants#search', as: 'restaurants_search'
