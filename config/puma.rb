@@ -36,3 +36,7 @@ worker_timeout 3600 if rails_env == "development"
 
 # Enable the Puma control app (optional for debugging)
 activate_control_app if rails_env == "development"
+
+# config/puma.rb
+port ENV.fetch("PORT") { 3000 }
+environment ENV.fetch("RAILS_ENV") { "development" }

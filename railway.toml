@@ -1,0 +1,8 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "bundle exec puma -p $PORT"
+healthcheckPath = "/"
+healthcheckTimeout = 300
+restartPolicyType = "always"
