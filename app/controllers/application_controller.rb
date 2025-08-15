@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  def health
-    render plain: 'OK'
+  def index
+    render plain: "Hello Railway! Your Rails app is working!"
   end
 end
