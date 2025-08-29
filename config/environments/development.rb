@@ -84,7 +84,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'gmail.com', 
     user_name:            'caroltrial000@gmail.com',
-    password:             'btbc ikli digq wlmf',
+    password:             ENV['SMTP_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true
   }
