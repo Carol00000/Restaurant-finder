@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'application#index'
-  #root 'dashboard#profile'
+  #root 'application#index'
+  root 'dashboard#profile'
 
   get 'restaurants/search', to: 'restaurants#search', as: 'restaurants_search'
 

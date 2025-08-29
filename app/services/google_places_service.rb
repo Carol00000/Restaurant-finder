@@ -32,10 +32,11 @@ class GooglePlacesService
   end
 
   def search_restaurants(lat, lng, radius = 1000, max_results = 20)
+    return { error: "Invalid coordinates" } unless valid_coordinates?(lat, lng) 
     endpoint = "#{BASE_URL}/places:searchNearby"
     body = {
       includedTypes: ["restaurant"],
-      maxResultCount: max_results,
+      maxResultCount: [max_results, 20].min,
       locationRestriction: {
         circle: {
           center: {
@@ -59,13 +60,15 @@ class GooglePlacesService
       response["places"].map do |place|
         photo_url = if place["photos"]&.first
           photo_name = place["photos"].first["name"]
-          "#{BASE_URL}/#{photo_name}/media?key=#{@api_key}&maxHeightPx=800"
+          #"#{BASE_URL}/#{photo_name}/media?key=#{@api_key}&maxHeightPx=800"
+          "https://places.googleapis.com/v1/#{photo_name}/media?key=#{@api_key}&maxHeightPx=800"
         end
 
         raw_price_level = place["priceLevel"]
         Rails.logger.debug "Raw price level for #{place.dig("displayName", "text")}: #{raw_price_level.inspect}"
         
-        mapped_price_level = PRICE_LEVEL_MAP[raw_price_level] || "Unknown"
+        mapped_price_level = raw_price_level ? (PRICE_LEVEL_MAP[raw_price_level] || "Unknown") : "Not specified"
+        #mapped_price_level = PRICE_LEVEL_MAP[raw_price_level] || "Unknown"
         Rails.logger.debug "Mapped price level for #{place.dig("displayName", "text")}: #{mapped_price_level.inspect}"
 
         {
@@ -166,5 +169,9 @@ class GooglePlacesService
       puts "API request failed. Response code: #{response.code}"
       { "error" => "API request failed with code #{response.code}: #{response.body}" }
     end
+  end
+
+  def valid_coordinates?(lat, lng)
+    lat.to_f.between?(-90, 90) && lng.to_f.between?(-180, 180)
   end
 end

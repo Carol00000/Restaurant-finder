@@ -28,11 +28,8 @@
       <%= yield %>
     </main>
 
-    <script 
-      src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_PLACES_API_KEY'] %>&callback=initMap" 
-      async 
-      defer>
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_PLACES_API_KEY'] %>&libraries=places"></script>
+
   </body>
 </html>
 

@@ -83,3 +83,27 @@
 </script>
 <%= content_tag :div, @restaurants.to_json.html_safe, id: "restaurants-data", style: "display: none;" %>
 
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const restaurants = <%= raw @restaurants.to_json %>;
+    const resultsList = document.getElementById('resultsList');
+    
+    if (restaurants && restaurants.length > 0) {
+      let html = '';
+      restaurants.forEach(restaurant => {
+        html += `
+          <div class="p-4 border-b hover:bg-gray-50">
+            <h3 class="font-semibold text-gray-900">${restaurant.name}</h3>
+            <p class="text-sm text-gray-600">${restaurant.address}</p>
+            <p class="text-sm text-gray-500">Price: ${restaurant.price_level}</p>
+            <p class="text-sm text-gray-500">Cuisine: ${restaurant.cuisine}</p>
+          </div>
+        `;
+      });
+      resultsList.innerHTML = html;
+    } else {
+      resultsList.innerHTML = '<div class="p-4 text-gray-500">No restaurants found</div>';
+    }
+  });
+  </script>

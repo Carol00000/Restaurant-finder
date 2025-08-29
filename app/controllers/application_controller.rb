@@ -13,8 +13,5 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     root_path
   end
-
-  def index
-    render plain: "Hello Railway! Your Rails app is working!"
-  end
+  
 end

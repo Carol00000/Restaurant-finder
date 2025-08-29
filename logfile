@@ -1,0 +1,2 @@
+2025-08-26 23:36:55.366 CST [4642] FATAL:  lock file "postmaster.pid" already exists
+2025-08-26 23:36:55.366 CST [4642] HINT:  Is another postmaster (PID 633) running in data directory "/home/carol_000/.asdf/installs/postgres/15.1/data"?
