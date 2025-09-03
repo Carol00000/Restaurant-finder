@@ -1,7 +1,3 @@
-email: client_demo@example.com		
-password: password123		
-
-
 <<<<<<< HEAD
 # Restaurant-finder
 =======
