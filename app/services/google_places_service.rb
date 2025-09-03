@@ -36,7 +36,7 @@ class GooglePlacesService
     endpoint = "#{BASE_URL}/places:searchNearby"
     body = {
       includedTypes: ["restaurant"],
-      maxResultCount: [max_results, 20].min,
+      maxResultCount: [max_results, 10].min,
       locationRestriction: {
         circle: {
           center: {

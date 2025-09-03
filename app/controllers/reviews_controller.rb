@@ -2,8 +2,10 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_restaurant
   before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :check_existing_review, only: [:create]
 
   def create
+
     @review = @restaurant.reviews.build(review_params)
     @review.user = current_user
 
@@ -52,8 +54,26 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.find(params[:id])
   end
 
-  def review_params
-    params.require(:review).permit(:rating, :comment)
+def check_existing_review
+  puts "=== DEBUG check_existing_review ==="
+  puts "Restaurant ID: #{@restaurant.id}"
+  puts "Current User ID: #{current_user.id}"
+  
+  existing_review = Review.find_by(restaurant_id: @restaurant.id, user_id: current_user.id)
+  puts "Existing review found: #{existing_review.present?}"
+  puts "Existing review: #{existing_review.inspect}" if existing_review
+  puts "=========================="
+  
+  if existing_review
+    flash[:alert] = "You have already reviewed this restaurant. You can edit your existing review instead."
+    redirect_to @restaurant
+    return
   end
 end
 
+
+
+  def review_params
+    params.require(:review).permit(:rating, :comment, :restaurant_id, :user_id)
+  end
+end

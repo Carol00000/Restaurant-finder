@@ -8,7 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Review.destroy_all
 client_user = User.create!(
   name: "Client Demo",
   email: "client_demo@example.com",
