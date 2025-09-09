@@ -1,31 +1,7 @@
-email: client_demo@example.com		
+email: client_demo@example.com
 password: password123		
+RESTAURANT FINDER
 
+A Ruby on Rails web application that helps users discover restaurants in their area using Google Places API integration.
+Built with real-time search capabilities, user authentication, and interactive mapping features.
 
-# Restaurant-finder
-=======
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
->>>>>>> feature-search
