@@ -25,7 +25,7 @@ class RestaurantsController < ApplicationController
   
     places_service = GooglePlacesService.new
   
-    # Step 1: Geocode the address
+    # geocode the address
     location = places_service.geocode_address(address)
     Rails.logger.debug "Geocoded location: #{location.inspect}"
   
@@ -34,7 +34,7 @@ class RestaurantsController < ApplicationController
       return render :search
     end
   
-    # Step 2: Search restaurants using lat/lng from geocoding
+    # Search restaurants using lat/lng from geocoding
     lat = location[:latitude]
     lng = location[:longitude]
   
